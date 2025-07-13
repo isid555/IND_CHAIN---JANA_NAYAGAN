@@ -88,3 +88,8 @@ IND_CHAIN combines the power of blockchain and AI to create a platform that is n
 3. ![img_2.png](img_2.png)
 4. ![img_3.png](img_3.png)
 5. ![img_4.png](img_4.png)
+
+# Folder Structure :
+1. Frontend -> packages/nextjs
+2. Backend -> packages/hardhat
+3. AI Agents -> AI Agents
