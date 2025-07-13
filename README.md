@@ -88,6 +88,21 @@ IND_CHAIN combines the power of blockchain and AI to create a platform that is n
 3. ![img_2.png](img_2.png)
 4. ![img_3.png](img_3.png)
 5. ![img_4.png](img_4.png)
+6. ![WhatsApp Image 2025-07-13 at 11 11 59_607452f7](https://github.com/user-attachments/assets/c14ad422-7729-4f49-b12a-d35e4e24be54)
+
+## Videos 
+1. Fund raiser Flow
+
+https://github.com/user-attachments/assets/ba3866ce-3a80-40d5-931a-d98ce558d462
+
+
+2. Chit Fund Flow
+
+
+https://github.com/user-attachments/assets/1ade2ada-541a-44ef-9b71-8cbfe6a32867
+
+
+
 
 # Folder Structure :
 1. Frontend -> packages/nextjs
