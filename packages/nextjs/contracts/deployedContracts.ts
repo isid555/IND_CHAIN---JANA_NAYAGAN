@@ -4,6 +4,1979 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  31337: {
+    FundraiserDApp: {
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "fundraiserId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "donor",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "DonationReceived",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amountNeeded",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "ipfsHash",
+              type: "string",
+            },
+          ],
+          name: "FundraiserCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "fundraiserId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "FundsWithdrawn",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_ipfsHash",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "_amountNeeded",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_timeLimitInSeconds",
+              type: "uint256",
+            },
+          ],
+          name: "createFundraiser",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_fundraiserId",
+              type: "uint256",
+            },
+          ],
+          name: "donate",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "fundraisers",
+          outputs: [
+            {
+              internalType: "address payable",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "ipfsHash",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "amountNeeded",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "amountRaised",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "active",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_fundraiserId",
+              type: "uint256",
+            },
+          ],
+          name: "getFundraiserDetails",
+          outputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "ipfsHash",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "amountNeeded",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "amountRaised",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "active",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getTotalFundraisers",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "nextFundraiserId",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_fundraiserId",
+              type: "uint256",
+            },
+          ],
+          name: "withdrawFunds",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MultiPoolLoanSystem: {
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_poolId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_contributionAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_collateralAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_totalRounds",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_intervalDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_biddingDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_maxParticipants",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "_poolCreator",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "OwnableInvalidOwner",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "bidder",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "acceptAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "round",
+              type: "uint256",
+            },
+          ],
+          name: "BidPlaced",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "CollateralWithdrawn",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amountCovered",
+              type: "uint256",
+            },
+          ],
+          name: "ContributionCoveredByCollateral",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "round",
+              type: "uint256",
+            },
+          ],
+          name: "ContributionMade",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "DividendsDistributed",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "ParticipantDefaulted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "collateralAmount",
+              type: "uint256",
+            },
+          ],
+          name: "ParticipantJoined",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "PayOutDone",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+          ],
+          name: "PoolCompleted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "round",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "winner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "payout",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "surplus",
+              type: "uint256",
+            },
+          ],
+          name: "RoundCompleted",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "completeRound",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "contributeToRound",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getContractBalance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getEligibleParticipantsCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_user",
+              type: "address",
+            },
+          ],
+          name: "getParticipantInfo",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "user",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "collateralLocked",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "hasWithdrawnCollateral",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "roundWon",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalContributed",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "isActive",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "missedPayments",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "isDefaulted",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "dividendsEarned",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct MultiPoolLoanSystem.Participant",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getParticipantsList",
+          outputs: [
+            {
+              internalType: "address[]",
+              name: "",
+              type: "address[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getPoolInfo",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "poolId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "contributionAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "collateralAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalRounds",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "intervalDuration",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "biddingDuration",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "maxParticipants",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "isActive",
+                  type: "bool",
+                },
+                {
+                  internalType: "address",
+                  name: "creator",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "creationTime",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct MultiPoolLoanSystem.PoolConfig",
+              name: "config",
+              type: "tuple",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "currentRound",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalParticipants",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalSurplus",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalDividendsDistributed",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address[]",
+                  name: "participantsList",
+                  type: "address[]",
+                },
+              ],
+              internalType: "struct MultiPoolLoanSystem.PoolState",
+              name: "state",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_roundNumber",
+              type: "uint256",
+            },
+          ],
+          name: "getProjectedPayoutPercentage",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getRemainingTimeBiddingPeriod",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getRemainingTimeCurrentRound",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_round",
+              type: "uint256",
+            },
+          ],
+          name: "getRoundBids",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "bidder",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "bidAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct MultiPoolLoanSystem.Bid[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_round",
+              type: "uint256",
+            },
+          ],
+          name: "getRoundInfo",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "roundNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalPooled",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "startTime",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "biddingEndTime",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "winner",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "winningBid",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "surplus",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isCompleted",
+              type: "bool",
+            },
+            {
+              internalType: "bool",
+              name: "hasAuction",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_user",
+              type: "address",
+            },
+          ],
+          name: "isParticipant",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "joinPool",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "participants",
+          outputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "collateralLocked",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "hasWithdrawnCollateral",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "roundWon",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalContributed",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isActive",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "missedPayments",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isDefaulted",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "dividendsEarned",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_acceptAmount",
+              type: "uint256",
+            },
+          ],
+          name: "placeBid",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "poolConfig",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "contributionAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "collateralAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalRounds",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "intervalDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "biddingDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "maxParticipants",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isActive",
+              type: "bool",
+            },
+            {
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "creationTime",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "poolState",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "currentRound",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalParticipants",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalSurplus",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalDividendsDistributed",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "roundBids",
+          outputs: [
+            {
+              internalType: "address",
+              name: "bidder",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "bidAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "rounds",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "roundNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalPooled",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "startTime",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "biddingEndTime",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "winner",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "winningBid",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "surplus",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isCompleted",
+              type: "bool",
+            },
+            {
+              internalType: "bool",
+              name: "hasAuction",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bool",
+              name: "_isActive",
+              type: "bool",
+            },
+          ],
+          name: "setPoolActiveStatus",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "withdrawCollateral",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+      },
+    },
+    MultiPoolLoanSystemFactory: {
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "initialOwner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "OwnableInvalidOwner",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "poolAddress",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "contributionAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "maxParticipants",
+              type: "uint256",
+            },
+          ],
+          name: "PoolCreated",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "allPools",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_contributionAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_collateralAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_totalRounds",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_intervalDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_biddingDuration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_maxParticipants",
+              type: "uint256",
+            },
+          ],
+          name: "createPool",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "poolId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "poolAddress",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getAllPools",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_poolId",
+              type: "uint256",
+            },
+          ],
+          name: "getPoolAddress",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getTotalPoolsCreated",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_user",
+              type: "address",
+            },
+          ],
+          name: "getUserCreatedPools",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "nextPoolId",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "poolIdToAddress",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "userCreatedPools",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+      },
+    },
+    Remittance: {
+      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "recipient",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "paymentId",
+              type: "bytes32",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+          ],
+          name: "RemittanceSent",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "recipient",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "paymentId",
+              type: "bytes32",
+            },
+          ],
+          name: "RemittanceWithdrawn",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_recipient",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "_secretPhrase",
+              type: "string",
+            },
+          ],
+          name: "calculatePaymentId",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "pure",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          name: "remittances",
+          outputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "recipient",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "withdrawn",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_recipient",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "_paymentId",
+              type: "bytes32",
+            },
+            {
+              internalType: "string",
+              name: "_description",
+              type: "string",
+            },
+          ],
+          name: "sendRemittance",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_secretPhrase",
+              type: "string",
+            },
+          ],
+          name: "withdrawRemittance",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    YourContract: {
+      address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "greetingSetter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "newGreeting",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "bool",
+              name: "premium",
+              type: "bool",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "GreetingChange",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "greeting",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "premium",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_newGreeting",
+              type: "string",
+            },
+          ],
+          name: "setGreeting",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userGreetingCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

@@ -5682,9 +5682,9 @@ __metadata:
   linkType: hard
 
 "aproba@npm:^1.0.3 || ^2.0.0, aproba@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "aproba@npm:2.0.0"
-  checksum: 5615cadcfb45289eea63f8afd064ab656006361020e1735112e346593856f87435e02d8dcc7ff0d11928bc7d425f27bc7c2a84f6c0b35ab0ff659c814c138a24
+  version: 2.1.0
+  resolution: "aproba@npm:2.1.0"
+  checksum: 667c77755e8dd4c67f0a1a903d6879cac8c11e385758893eba518cced0448e2eba9996f2d93fe5187306ba85bce73d709bce4be809e0f51be0d24ff12db547fe
   languageName: node
   linkType: hard
 
