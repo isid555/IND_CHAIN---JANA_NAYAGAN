@@ -1,0 +1,142 @@
+{
+  "FundraiserDApp": {
+    "description": "A comprehensive smart contract for creating and managing fundraising campaigns. Users can create campaigns with specific goals and deadlines, accept Ether donations from supporters, and withdraw funds once conditions are met. Each campaign includes detailed information like name, description, IPFS document hash, target amount, and deadline.",
+    "functions": {
+      "createFundraiser": "Creates a new fundraising campaign with parameters: name (campaign title), description (detailed explanation), ipfsHash (IPFS hash for associated documents like PDFs), amountNeeded (target amount in Wei), and timeLimitInSeconds (campaign duration). Automatically assigns a unique ID and sets the deadline based on current timestamp plus the time limit.",
+      "donate": "Allows users to donate Ether to a specific fundraiser by providing the fundraiser ID. Validates that the fundraiser exists, is active, hasn't expired, and receives a positive donation amount. Automatically deactivates the fundraiser if the target goal is reached.",
+      "withdrawFunds": "Enables the fundraiser owner to withdraw collected funds. Withdrawal is allowed when either the deadline has passed OR the target amount has been reached. Transfers all raised funds to the owner's address, resets the raised amount to zero, and deactivates the fundraiser.",
+      "getFundraiserDetails": "Returns complete information about a specific fundraiser including owner address, name, description, IPFS hash, target amount, current raised amount, deadline timestamp, and active status. Useful for displaying campaign information to users.",
+      "getTotalFundraisers": "Returns the total number of fundraisers created on the platform. Useful for pagination and displaying platform statistics."
+    },
+    "events": {
+      "FundraiserCreated": "Emitted when a new fundraiser is created, providing the fundraiser ID, owner address, name, target amount, deadline, and IPFS hash for off-chain tracking.",
+      "DonationReceived": "Emitted when a donation is made, including the fundraiser ID, donor address, and donation amount for transaction tracking.",
+      "FundsWithdrawn": "Emitted when funds are withdrawn by the fundraiser owner, including fundraiser ID, owner address, and withdrawn amount for audit purposes."
+    },
+    "key_features": {
+      "automatic_goal_tracking": "Automatically tracks when fundraising goals are met and can deactivate campaigns immediately upon reaching the target.",
+      "deadline_management": "Enforces time-based constraints with automatic deadline calculation and validation.",
+      "secure_withdrawals": "Implements secure withdrawal patterns with proper validation and reentrancy protection.",
+      "ipfs_integration": "Supports IPFS document storage for additional campaign materials and verification documents.",
+      "event_logging": "Comprehensive event emission for off-chain applications and user notifications."
+    },
+    "use_cases": [
+      "Charity fundraising campaigns",
+      "Project crowdfunding",
+      "Emergency relief funds",
+      "Community initiatives",
+      "Personal fundraising for medical expenses",
+      "Educational funding campaigns"
+    ]
+  },
+  "Remittance": {
+    "description": "A secure smart contract for peer-to-peer money transfers using Ethereum. Enables users to send ETH to recipients using a unique payment ID system generated from the recipient's address and a secret phrase. Recipients can only withdraw funds by providing the correct secret phrase, ensuring secure and private transfers.",
+    "functions": {
+      "sendRemittance": "Sends ETH to a specified recipient using a unique payment ID. Parameters include recipient address, payment ID (hash of recipient address + secret phrase), and an optional description. The sender must include ETH with the transaction. Validates that the amount is positive, payment ID is unique, and recipient address is valid.",
+      "withdrawRemittance": "Allows recipients to withdraw their remittance by providing the correct secret phrase. The function regenerates the payment ID using the caller's address and the provided secret phrase. Validates that the remittance exists, caller is the intended recipient, and funds haven't been withdrawn yet. Transfers ETH to the recipient upon successful validation.",
+      "calculatePaymentId": "A utility function that calculates the payment ID from a recipient address and secret phrase. Returns the keccak256 hash of the encoded recipient address and secret phrase. Can be used off-chain to generate or verify payment IDs before sending remittances."
+    },
+    "events": {
+      "RemittanceSent": "Emitted when a remittance is successfully sent, including sender address, recipient address, amount, payment ID, and description for transaction tracking and notifications.",
+      "RemittanceWithdrawn": "Emitted when a recipient successfully withdraws their remittance, including recipient address, withdrawn amount, and payment ID for audit and confirmation purposes."
+    },
+    "key_features": {
+      "secret_phrase_security": "Uses cryptographic hashing of recipient address and secret phrase to create secure payment IDs, ensuring only intended recipients can withdraw funds.",
+      "unique_payment_ids": "Prevents duplicate transactions by ensuring each payment ID can only be used once, avoiding conflicts and double-spending.",
+      "description_support": "Allows senders to include optional descriptions for payments, enabling better transaction tracking and communication.",
+      "secure_withdrawals": "Implements secure withdrawal patterns with proper validation and reentrancy protection using low-level calls.",
+      "address_validation": "Validates recipient addresses to prevent sending funds to invalid or zero addresses."
+    },
+    "security_measures": {
+      "payment_id_uniqueness": "Ensures each payment ID is unique and cannot be reused to prevent fraud or duplicate transactions.",
+      "recipient_verification": "Only the intended recipient with the correct secret phrase can withdraw funds",
+      "withdrawal_protection": "Prevents multiple withdrawals of the same remittance through boolean flags",
+      "amount_validation": "Ensures positive amounts and prevents zero-value transactions"
+    },
+    "use_cases": [
+      "International money transfers",
+      "Peer-to-peer payments with privacy",
+      "Gift transfers with secret codes",
+      "Business payments with reference descriptions",
+      "Escrow-like services with delayed withdrawal",
+      "Anonymous donations with withdrawal codes",
+      "Cross-border remittances for family support"
+    ],
+    "workflow": {
+      "step_1": "Sender generates a secret phrase and calculates payment ID using recipient's address",
+      "step_2": "Sender calls sendRemittance with recipient address, payment ID, description, and ETH amount",
+      "step_3": "Sender shares the secret phrase with recipient through secure communication",
+      "step_4": "Recipient calls withdrawRemittance with the secret phrase to claim funds",
+      "step_5": "Contract validates the secret phrase and transfers ETH to recipient"
+    }
+  },
+  "MultiPoolLoanSystem": {
+    "description": "A sophisticated decentralized lending pool system that implements a rotating savings and credit association (ROSCA) model. Participants join pools by providing collateral, contribute fixed amounts each round, and take turns receiving larger payouts through a bidding mechanism. The system manages multiple rounds with automatic surplus distribution, collateral-based default protection, and dividend payments to remaining participants.",
+    "functions": {
+      "joinPool": "Allows users to join a lending pool by paying the required collateral amount. Validates that the pool is active, user isn't already a participant, pool isn't full, and it's still the first round. Initializes participant data including collateral locked, contribution tracking, and active status.",
+      "contributeToRound": "Enables participants to contribute their fixed amount for the current round. Validates participant eligibility, contribution amount matches required amount, round timing, and prevents double contributions. Updates round total and participant's contribution history.",
+      "placeBid": "Allows eligible participants to bid for receiving the round's payout by specifying the amount they're willing to accept. Validates bidding timing (within bidding period), participant eligibility (active, not defaulted, hasn't won before), and bid amount constraints. Stores bids for round completion processing.",
+      "completeRound": "Processes round completion including handling missed contributions through collateral liquidation, determining winners through lowest bid selection, calculating and distributing payouts and dividends, and preparing the next round. Automatically handles participant defaults and surplus distribution.",
+      "withdrawCollateral": "Allows participants to withdraw their remaining collateral after pool completion. Validates that the pool is finished and participant hasn't already withdrawn. Returns any unused collateral amount to the participant.",
+      "getPoolInfo": "Returns comprehensive pool configuration and current state including pool ID, contribution amounts, participant counts, current round, total surplus, and completion status.",
+      "getParticipantInfo": "Retrieves detailed participant information including collateral locked, contributions made, round won, default status, dividends earned, and active status for a specific user.",
+      "getRoundInfo": "Returns complete round details including total pooled amount, timing information, winner details, winning bid, surplus generated, and completion status for a specific round.",
+      "getRoundBids": "Retrieves all bids placed for a specific round including bidder addresses, bid amounts, and timestamps for transparency and audit purposes.",
+      "setPoolActiveStatus": "Owner-only function to pause or resume pool operations for maintenance or emergency situations."
+    },
+    "events": {
+      "ParticipantJoined": "Emitted when a user successfully joins the pool with their collateral amount for tracking new members.",
+      "ContributionMade": "Emitted when a participant makes their round contribution including amount and round number for contribution tracking.",
+      "BidPlaced": "Emitted when a participant places a bid for receiving the round payout including bid amount and timing.",
+      "RoundCompleted": "Emitted when a round finishes including winner details, payout amount, and surplus generated for round tracking.",
+      "PoolCompleted": "Emitted when all rounds are finished and the pool is completed for final settlement tracking.",
+      "CollateralWithdrawn": "Emitted when participants withdraw their remaining collateral after pool completion.",
+      "DividendsDistributed": "Emitted when surplus dividends are distributed to eligible participants.",
+      "ParticipantDefaulted": "Emitted when a participant defaults due to insufficient collateral for contributions.",
+      "ContributionCoveredByCollateral": "Emitted when missed contributions are automatically covered using participant's collateral.",
+      "PayOutDone": "Emitted when final payouts are made to participants upon pool completion."
+    },
+    "key_features": {
+      "collateral_based_security": "Requires upfront collateral to ensure participants can cover contributions even if they miss payments, providing system stability.",
+      "progressive_payout_system": "Implements increasing payout percentages (50% to 100%) over rounds, incentivizing early participation and fair distribution.",
+      "automated_default_handling": "Automatically covers missed contributions using participant collateral, preventing pool disruption from payment failures.",
+      "surplus_dividend_distribution": "Distributes generated surplus as dividends to eligible participants, ensuring fair profit sharing.",
+      "bidding_mechanism": "Uses competitive bidding where lowest bidders win, creating market-driven interest rates for loans.",
+      "round_based_operations": "Operates in structured rounds with defined timing for contributions, bidding, and completion phases.",
+      "multi_participant_management": "Supports multiple participants with individual tracking of contributions, collateral, and status.",
+      "owner_controls": "Provides pool creator with ability to pause/resume operations for emergency management."
+    },
+    "security_measures": {
+      "reentrancy_protection": "Uses OpenZeppelin's ReentrancyGuard to prevent reentrancy attacks during fund transfers.",
+      "access_control": "Implements Ownable pattern for administrative functions and participant validation for user actions.",
+      "collateral_validation": "Ensures sufficient collateral before allowing participation and validates contribution amounts.",
+      "timing_constraints": "Enforces strict timing for bidding periods, round durations, and contribution windows.",
+      "default_prevention": "Automatic collateral liquidation prevents missed payments from disrupting the pool cycle."
+    },
+    "use_cases": [
+      "Community savings and lending circles",
+      "Microfinance and peer-to-peer lending",
+      "Business investment pools with rotating payouts",
+      "Cooperative credit associations",
+      "Emergency fund pools for communities",
+      "Investment clubs with structured returns",
+      "Cross-border remittance and savings groups",
+      "Decentralized credit unions"
+    ],
+    "workflow": {
+      "step_1": "Pool creator deploys contract with configuration (contribution amount, collateral, rounds, participants limit, timing)",
+      "step_2": "Participants join by paying collateral amount during the first round registration period",
+      "step_3": "Each round: participants contribute fixed amount and eligible members place bids for receiving payout",
+      "step_4": "Round completion: system processes contributions, handles defaults, determines winner, distributes payout and dividends",
+      "step_5": "Process repeats for all rounds until completion, then participants can withdraw remaining collateral and receive final dividends"
+    },
+    "participant_lifecycle": {
+      "joining": "Pay collateral to join pool during first round",
+      "contributing": "Make fixed contributions each round to maintain active status",
+      "bidding": "Place bids to receive round payouts (only if haven't won before)",
+      "winning": "Receive payout and dividends when winning a round",
+      "defaulting": "Miss contributions leading to collateral liquidation and pool exit",
+      "completing": "Withdraw remaining collateral and receive final dividends after all rounds"
+    }
+  }
+}

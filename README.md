@@ -1,80 +1,90 @@
-# 🏗 Scaffold-ETH 2
+# IND_CHAIN
+**Team Name:** JANA NAYAGAN
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+Welcome to our submission for the Agentic Ethereum Hackathon by Reskilll & Geodework! This repository includes our project code, documentation, and related assets.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## 📌 Problem Statement
+- Millions in India rely on informal finance — prone to scams, fees, and lack of transparency.
+- Chit funds are often run by private companies that charge organizing fees and may disappear with user money.
+- Rural remittances still depend on intermediaries or cash carriers.
+- Emergency fundraising options are limited or inefficient.
+- Financial literacy and credit scoring are limited or non-existent for these populations.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+## 💡 Our Solution
+**Project Name:** IND_CHAIN  
+GramChain (now IND_CHAIN) brings the power of Ethereum-based DeFi and AI agents to automate and democratize grassroots financial services:
+1. **On-chain Chit Funds:** Smart contracts ensure trustless, rule-based chit funds with collateral guarantees.
+2. **Emergency Fundraiser:** DAO-based mechanism for raising and verifying genuine need.
+3. **Remittance:** P2P transfer system with accountability.
+4. **AI Agents:** Assist users, detect fraud, explain features in local languages.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+Together, these systems reduce dependency on central actors and enable autonomous, scalable community finance.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Why Blockchain Matters for Chit Funds
+Traditionally, chit funds are profitable for private organizers — they:
+- Take cuts from each round.
+- Rely on user trust without guarantees.
+- Have led to scams or mismanagement.
 
-## Requirements
+With IND_CHAIN:
+- Smart contracts automate the entire process — no organizer needed.
+- All actions are on-chain, transparent, and immutable.
+- No fees for participation.
+- Collateral ensures commitment.
+- DAO and AI agents handle verification and fairness.
 
-Before you begin, you need to install the following tools:
+Thus, trust is shifted from human intermediaries to code — a secure, trustless system built for communities.
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+# IND_CHAIN
 
-## Quickstart
+IND_CHAIN is a cutting-edge Web3 and AI-powered platform designed to revolutionize financial collaboration and fundraising. The project integrates blockchain technology with AI to provide secure, transparent, and intelligent solutions for chit funds, group formation, fundraisers, and remittance.
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## Features
 
-1. Install dependencies if it was skipped in CLI:
+### Web3XAI Integration
+- **Chit Funds**: Create and manage chit fund groups securely using blockchain technology. Visualize a group of individuals pooling their resources together, with smart contracts ensuring fairness and transparency. For example, imagine a family saving for a wedding, where each member contributes monthly, and the funds are distributed automatically based on predefined rules.
+- **Group Formation**: Form groups for collaborative financial activities with ease. Picture a community of farmers coming together to pool resources for purchasing equipment, with blockchain ensuring every transaction is recorded immutably.
+- **Fundraisers**: Launch fundraising campaigns with transparency and accountability. Envision a charity raising funds for disaster relief, where donors can track how their contributions are utilized through real-time updates on the blockchain.
+- **Remittance**: Send and receive funds securely and efficiently. Imagine a migrant worker sending money back home, with reduced fees and instant transactions powered by blockchain.
 
-```
-cd my-dapp-example
-yarn install
-```
+### AI-Powered Enhancements
+- **Document Verification and Summarization**: AI agents verify and summarize documents for fundraisers, ensuring authenticity and clarity. For instance, a fundraiser for a medical emergency uploads a doctor's report, and the AI agent verifies its authenticity while summarizing the key details for potential donors.
+- **AI Chatbot**: An intelligent chatbot is integrated to assist users with navigating the application and answering queries. Visualize a user asking the chatbot how to start a chit fund, and the bot provides step-by-step guidance, making the process seamless.
 
-2. Run a local network in the first terminal:
+## Technologies Used
+- **Blockchain**: Solidity smart contracts for secure and transparent operations.
+- **AI**: Advanced AI models for document processing and user assistance.
+- **Frontend**: React for a dynamic and user-friendly interface.
+- **Backend**: Node.js for server-side operations.
+- **Package Managers**: Yarn and npm for dependency management.
 
-```
-yarn chain
-```
+## Getting Started
+1. Clone the repository.
+2. Install dependencies using `yarn install` or `npm install`.
+3. Start the development server with `yarn start` or `npm start`.
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
+## License
+This project is licensed under the MIT License.
 
-3. On a second terminal, deploy the test contract:
+## Visualizing Use Cases
 
-```
-yarn deploy
-```
+### Chit Funds in Action
+Imagine a group of ten friends who want to save money for a vacation. They decide to start a chit fund using IND_CHAIN. Each member contributes a fixed amount monthly, and the smart contract ensures that the pooled funds are distributed to one member each month based on a transparent lottery system. The blockchain records every transaction, ensuring trust and eliminating disputes.
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+### Fundraisers for Social Causes
+Picture a non-profit organization launching a fundraiser to build a school in a rural area. They upload detailed plans and documents, verified by AI agents, to gain the trust of donors. Contributors can see the progress of the campaign in real-time, with updates on how the funds are being utilized.
 
-4. On a third terminal, start your NextJS app:
+### Efficient Remittance
+Visualize a worker in a foreign country sending money back home to their family. With IND_CHAIN, the transaction is completed instantly, with minimal fees, and the family receives the funds securely. The blockchain ensures that the transaction is immutable and transparent.
 
-```
-yarn start
-```
+### AI Chatbot Assistance
+A user new to the platform wants to start a fundraiser but is unsure how to proceed. They interact with the AI chatbot, which provides step-by-step instructions, answers their questions, and even suggests best practices for creating a successful campaign.
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+IND_CHAIN combines the power of blockchain and AI to create a platform that is not only functional but also transformative, empowering individuals and communities to achieve their financial goals securely and transparently.
 
-Run smart contract test with `yarn hardhat:test`
-
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
-
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+## Screenshots :
+1. ![img.png](img.png)
+2. ![img_1.png](img_1.png)
+3. ![img_2.png](img_2.png)
+4. ![img_3.png](img_3.png)
+5. ![img_4.png](img_4.png)
